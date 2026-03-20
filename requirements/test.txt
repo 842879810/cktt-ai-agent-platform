@@ -1,0 +1,4 @@
+-r dev.txt
+
+httpx>=0.26.0
+pytest-mock>=3.12.0

@@ -1,0 +1,2 @@
+# Base requirements for all images
+python=3.11-slim

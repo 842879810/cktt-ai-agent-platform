@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "agent-worker"
+version = "0.1.0"
+description = "AI Agent Background Worker"
+authors = ["CKTT Team <team@cktt.ai>"]
+packages = [{include = "agent_worker"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+celery = "^5.3.0"
+redis = "^5.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,23 @@
+site_name: CKTT AI Agent Platform
+site_description: Enterprise AI Agent Platform
+site_author: CKTT Team
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+      - Configuration: getting-started/configuration.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - System Design: architecture/system-design.md
+  - API: api/
+  - Guides: guides/
+  - Examples: examples/
+  - Contributing: contributing/
+
+plugins:
+  - search

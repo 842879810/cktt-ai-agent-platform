@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements/base.txt .
+RUN pip install --no-cache-dir -r requirements/base.txt
+
+COPY apps/agent-worker /app/agent_worker
+COPY packages /app/packages
+
+ENV PYTHONPATH=/app
+
+CMD ["celery", "-A", "agent_worker.worker", "worker", "--loglevel=info"]

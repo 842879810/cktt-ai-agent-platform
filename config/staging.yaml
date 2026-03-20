@@ -1,0 +1,6 @@
+app:
+  debug: false
+  environment: staging
+
+logging:
+  level: INFO

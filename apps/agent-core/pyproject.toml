@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "agent-core"
+version = "0.1.0"
+description = "AI Agent Core Engine"
+authors = ["CKTT Team <team@cktt.ai>"]
+packages = [{include = "agent_core"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "agent-brain"
+version = "0.1.0"
+description = "AI Agent Brain - Router, Scheduler, Orchestrator"
+authors = ["CKTT Team <team@cktt.ai>"]
+packages = [{include = "agent_brain"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "types"
+version = "0.1.0"
+description = "Type definitions"
+authors = ["CKTT Team <team@cktt.ai>"]
+packages = [{include = "types"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
