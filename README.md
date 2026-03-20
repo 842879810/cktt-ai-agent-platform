@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CKTT AI Agent Platform
 
 <p align="center">
@@ -458,7 +457,3 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 - Website: https://cktt.ai
 - Email: team@cktt.ai
-=======
-# cktt-ai-agent-platform
-企业级智能体平台，面向业务场景提供自主决策、任务编排与多模态交互能力，支持高可用、可扩展、安全可控的企业级 AI 应用落地。
->>>>>>> 40c42b07b5486f6454447ff4141c0a6884eca397
