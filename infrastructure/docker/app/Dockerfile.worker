@@ -1,13 +1,52 @@
-FROM python:3.11-slim
+# ==================== Worker Service Dockerfile ====================
+# Multi-stage build for optimized image size
+
+# Stage 1: Base image
+FROM python:3.11-slim as base
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR /app
 
-COPY requirements/base.txt .
-RUN pip install --no-cache-dir -r requirements/base.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY apps/agent-worker /app/agent_worker
-COPY packages /app/packages
+# Stage 2: Dependencies
+FROM base as deps
 
-ENV PYTHONPATH=/app
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
-CMD ["celery", "-A", "agent_worker.worker", "worker", "--loglevel=info"]
+# Install Python dependencies
+COPY pyproject.toml poetry.lock* ./
+RUN pip install poetry && \
+    poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi
+
+# Stage 3: Production
+FROM base as production
+
+# Create non-root user for security
+RUN groupadd -r cktt && useradd -r -g cktt cktt
+
+# Copy virtual environment from deps stage
+COPY --from=deps /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy application code
+COPY --chown=cktt:cktt apps/agent-worker /app/agent_worker
+COPY --chown=cktt:cktt packages /app/packages
+COPY --chown=cktt:cktt pyproject.toml /app/
+
+# Switch to non-root user
+USER cktt
+
+# Run the Celery worker
+CMD ["celery", "-A", "agent_worker.worker", "worker", "--loglevel=info", "--concurrency=4"]
