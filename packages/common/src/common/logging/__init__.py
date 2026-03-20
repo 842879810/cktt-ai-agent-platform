@@ -1,8 +1,7 @@
 """Logging utilities."""
 
-import logging
 import json
-from typing import Any, Dict
+import logging
 
 
 class JSONFormatter(logging.Formatter):

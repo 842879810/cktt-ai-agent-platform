@@ -1,14 +1,12 @@
 """OpenAI LLM provider."""
 
-from typing import Any, Dict, List
-
 from ..base import BaseLLM, LLMResponse, Message
 
 
 class OpenAILLM(BaseLLM):
     """OpenAI LLM provider."""
 
-    async def chat(self, messages: List[Message], **kwargs) -> LLMResponse:
+    async def chat(self, messages: list[Message], **kwargs) -> LLMResponse:
         """Send a chat request to OpenAI."""
         # Placeholder for actual OpenAI API call
         return LLMResponse(

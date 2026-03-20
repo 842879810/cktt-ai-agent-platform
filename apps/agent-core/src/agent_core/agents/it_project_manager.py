@@ -21,14 +21,14 @@ IT项目管理智能体模块
     result = await agent.run({"project_name": "ERP系统", "project_info": {...}})
 """
 
-from typing import Any, Dict, List, Optional
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
+from typing import Any
 
-from .base import AgentConfig, AgentState, BaseAgent
+from .base import AgentConfig, BaseAgent
 
 
-class ProjectPhase(str, Enum):
+class ProjectPhase(StrEnum):
     """
     IT项目阶段枚举
 
@@ -52,7 +52,7 @@ class ProjectPhase(str, Enum):
     COMPLETED = "completed"         # 完成
 
 
-class DocumentStatus(str, Enum):
+class DocumentStatus(StrEnum):
     """
     文档状态枚举
 
@@ -109,8 +109,8 @@ class ITProjectManagerAgent(BaseAgent):
         super().__init__(config)
         self.project_name = project_name  # 项目名称
         self.current_phase = ProjectPhase.PRD  # 当前阶段，默认从PRD开始
-        self.documents: Dict[str, Any] = {}  # 文档存储字典
-        self.tasks: List[Dict[str, Any]] = []  # 任务列表
+        self.documents: dict[str, Any] = {}  # 文档存储字典
+        self.tasks: list[dict[str, Any]] = []  # 任务列表
 
     async def run(self, input_data: Any) -> Any:
         """
@@ -210,7 +210,7 @@ class ITProjectManagerAgent(BaseAgent):
         self.state.context["last_result"] = result
         return result
 
-    async def _create_prd(self) -> Dict[str, Any]:
+    async def _create_prd(self) -> dict[str, Any]:
         """
         创建产品需求文档（PRD）
 
@@ -277,7 +277,7 @@ class ITProjectManagerAgent(BaseAgent):
             "next": "PRD Review"
         }
 
-    async def _review_prd(self) -> Dict[str, Any]:
+    async def _review_prd(self) -> dict[str, Any]:
         """
         评审产品需求文档（PRD Review）
 
@@ -321,7 +321,7 @@ class ITProjectManagerAgent(BaseAgent):
             "next": "High-Level Design"
         }
 
-    async def _create_hld(self) -> Dict[str, Any]:
+    async def _create_hld(self) -> dict[str, Any]:
         """
         创建概要设计文档（HLD）
 
@@ -338,9 +338,6 @@ class ITProjectManagerAgent(BaseAgent):
         Returns:
             包含HLD内容的字典
         """
-        # 参考PRD进行设计
-        prd = self.documents.get("prd", {})
-
         # 构建HLD文档内容
         hld_content = {
             "title": f"{self.project_name} - 概要设计文档",
@@ -385,7 +382,7 @@ class ITProjectManagerAgent(BaseAgent):
             "next": "Low-Level Design"
         }
 
-    async def _create_lld(self) -> Dict[str, Any]:
+    async def _create_lld(self) -> dict[str, Any]:
         """
         创建详细设计文档（LLD）
 
@@ -402,9 +399,6 @@ class ITProjectManagerAgent(BaseAgent):
         Returns:
             包含LLD内容的字典
         """
-        # 参考HLD进行详细设计
-        hld = self.documents.get("hld", {})
-
         lld_content = {
             "title": f"{self.project_name} - 详细设计文档",
             "version": "1.0.0",
@@ -448,7 +442,7 @@ class ITProjectManagerAgent(BaseAgent):
             "next": "Task Assignment"
         }
 
-    async def _assign_tasks(self) -> Dict[str, Any]:
+    async def _assign_tasks(self) -> dict[str, Any]:
         """
         生成并下发开发任务
 
@@ -508,7 +502,7 @@ class ITProjectManagerAgent(BaseAgent):
         """
         return self.current_phase.value
 
-    def get_document(self, doc_type: str) -> Optional[Dict[str, Any]]:
+    def get_document(self, doc_type: str) -> dict[str, Any] | None:
         """
         获取指定类型的文档
 
@@ -520,7 +514,7 @@ class ITProjectManagerAgent(BaseAgent):
         """
         return self.documents.get(doc_type)
 
-    def get_tasks(self) -> List[Dict[str, Any]]:
+    def get_tasks(self) -> list[dict[str, Any]]:
         """
         获取所有生成的任务
 

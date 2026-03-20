@@ -1,7 +1,6 @@
 """Agents API endpoints."""
 
-from typing import List, Optional
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel
 
 router = APIRouter()
@@ -53,7 +52,7 @@ async def create_agent(request: AgentCreateRequest):
     )
 
 
-@router.get("/", response_model=List[AgentResponse])
+@router.get("/", response_model=list[AgentResponse])
 async def list_agents():
     """List all agents."""
     return []

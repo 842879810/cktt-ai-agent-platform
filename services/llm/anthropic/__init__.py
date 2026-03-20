@@ -1,7 +1,5 @@
 """Anthropic LLM provider."""
 
-from typing import Any, Dict, List
-
 from ..base import BaseLLM, LLMResponse, Message
 
 
@@ -11,7 +9,7 @@ class AnthropicLLM(BaseLLM):
     def __init__(self, api_key: str, model: str = "claude-3-opus-20240229", **kwargs):
         super().__init__(api_key, model)
 
-    async def chat(self, messages: List[Message], **kwargs) -> LLMResponse:
+    async def chat(self, messages: list[Message], **kwargs) -> LLMResponse:
         """Send a chat request to Anthropic."""
         # Placeholder for actual Anthropic API call
         return LLMResponse(

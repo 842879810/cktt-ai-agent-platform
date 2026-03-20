@@ -1,11 +1,12 @@
 """Agent type definitions."""
 
-from typing import Any, Dict, List, Optional
+from enum import StrEnum
+from typing import Any
+
 from pydantic import BaseModel, Field
-from enum import Enum
 
 
-class AgentType(str, Enum):
+class AgentType(StrEnum):
     """Agent types."""
 
     CONVERSATIONAL = "conversational"
@@ -14,7 +15,7 @@ class AgentType(str, Enum):
     TOOL_USE = "tool_use"
 
 
-class AgentStatus(str, Enum):
+class AgentStatus(StrEnum):
     """Agent status."""
 
     CREATED = "created"
@@ -31,7 +32,7 @@ class AgentConfig(BaseModel):
     type: AgentType = AgentType.CONVERSATIONAL
     max_iterations: int = 10
     timeout: int = 300
-    tools: List[str] = []
+    tools: list[str] = []
 
 
 class Agent(BaseModel):
@@ -43,4 +44,4 @@ class Agent(BaseModel):
     type: AgentType
     status: AgentStatus = AgentStatus.CREATED
     config: AgentConfig
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

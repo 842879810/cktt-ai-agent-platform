@@ -1,7 +1,5 @@
 """Local LLM provider."""
 
-from typing import Any, Dict, List
-
 from ..base import BaseLLM, LLMResponse, Message
 
 
@@ -12,7 +10,7 @@ class LocalLLM(BaseLLM):
         super().__init__(api_key, model)
         self.base_url = base_url
 
-    async def chat(self, messages: List[Message], **kwargs) -> LLMResponse:
+    async def chat(self, messages: list[Message], **kwargs) -> LLMResponse:
         """Send a chat request to local LLM."""
         # Placeholder for actual local LLM API call
         return LLMResponse(
