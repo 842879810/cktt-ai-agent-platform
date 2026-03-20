@@ -39,10 +39,10 @@
 """
 
 from .base import AgentConfig, AgentState, BaseAgent
-from .react import ReactAgent
 from .conversational import ConversationalAgent
-from .it_project_manager import ITProjectManagerAgent, ProjectPhase, DocumentStatus
+from .it_project_manager import DocumentStatus, ITProjectManagerAgent, ProjectPhase
 from .project_rd import ProjectRDAgent, RDPhase
+from .react import ReactAgent
 
 __all__ = [
     "AgentConfig",                # 智能体配置模型

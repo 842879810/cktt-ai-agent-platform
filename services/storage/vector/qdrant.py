@@ -1,6 +1,6 @@
 """Qdrant vector store."""
 
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 from .base import VectorStore
 
@@ -14,11 +14,11 @@ class QdrantVectorStore(VectorStore):
         self.port = port
         self.collection = collection
 
-    async def add(self, id: str, vector: List[float], metadata: Dict[str, Any]) -> None:
+    async def add(self, id: str, vector: list[float], metadata: dict[str, Any]) -> None:
         """Add a vector to Qdrant."""
         pass
 
-    async def search(self, query_vector: List[float], top_k: int = 5) -> List[Tuple[str, float, Dict[str, Any]]]:
+    async def search(self, query_vector: list[float], top_k: int = 5) -> list[tuple[str, float, dict[str, Any]]]:
         """Search in Qdrant."""
         return []
 
@@ -26,6 +26,6 @@ class QdrantVectorStore(VectorStore):
         """Delete a vector from Qdrant."""
         pass
 
-    async def get(self, id: str) -> Tuple[List[float], Dict[str, Any]]:
+    async def get(self, id: str) -> tuple[list[float], dict[str, Any]]:
         """Get a vector from Qdrant."""
         return [], {}

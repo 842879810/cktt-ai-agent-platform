@@ -24,16 +24,15 @@
     result = await agent.run({"project_name": "MyProject", "base_path": "./projects"})
 """
 
-import os
-from enum import Enum
-from typing import Any, Dict, List, Optional
 from datetime import datetime
+from enum import StrEnum
 from pathlib import Path
+from typing import Any
 
-from .base import AgentConfig, AgentState, BaseAgent
+from .base import AgentConfig, BaseAgent
 
 
-class RDPhase(str, Enum):
+class RDPhase(StrEnum):
     """
     项目研发阶段枚举
 
@@ -95,8 +94,8 @@ class ProjectRDAgent(BaseAgent):
         self.project_name = project_name  # 项目名称
         # 将基础路径转换为Path对象，便于后续处理
         self.base_path = Path(base_path) if base_path else Path.cwd()
-        self.created_directories: List[str] = []  # 已创建的目录列表
-        self.created_files: List[str] = []  # 已创建的文件列表
+        self.created_directories: list[str] = []  # 已创建的目录列表
+        self.created_files: list[str] = []  # 已创建的文件列表
 
     async def run(self, input_data: Any) -> Any:
         """
@@ -198,7 +197,7 @@ class ProjectRDAgent(BaseAgent):
         self.state.context["last_result"] = result
         return result
 
-    async def _init_project(self) -> Dict[str, Any]:
+    async def _init_project(self) -> dict[str, Any]:
         """
         项目初始化
 
@@ -226,7 +225,7 @@ class ProjectRDAgent(BaseAgent):
             "status": "initialized"
         }
 
-    async def _create_directories(self) -> Dict[str, Any]:
+    async def _create_directories(self) -> dict[str, Any]:
         """
         创建项目目录结构
 
@@ -329,7 +328,7 @@ class ProjectRDAgent(BaseAgent):
             "status": "completed"
         }
 
-    async def _setup_configs(self) -> Dict[str, Any]:
+    async def _setup_configs(self) -> dict[str, Any]:
         """
         设置配置文件
 
@@ -409,7 +408,7 @@ class ProjectRDAgent(BaseAgent):
             "status": "completed"
         }
 
-    async def _generate_templates(self) -> Dict[str, Any]:
+    async def _generate_templates(self) -> dict[str, Any]:
         """
         生成代码模板
 
@@ -586,7 +585,6 @@ MIT
         Returns:
             setup.py文件的标准内容
         """
-        project_name_safe = self.project_name.lower().replace("-", "_")
         return f"""from setuptools import setup, find_packages
 
 setup(
@@ -633,7 +631,7 @@ DEBUG=true
 ENVIRONMENT=development
 """
 
-    def get_created_structure(self) -> Dict[str, Any]:
+    def get_created_structure(self) -> dict[str, Any]:
         """
         获取创建的项目结构信息
 

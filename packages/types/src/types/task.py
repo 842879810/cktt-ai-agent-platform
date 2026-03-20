@@ -1,11 +1,12 @@
 """Task type definitions."""
 
-from typing import Any, Dict, List, Optional
+from enum import StrEnum
+from typing import Any
+
 from pydantic import BaseModel, Field
-from enum import Enum
 
 
-class TaskStatus(str, Enum):
+class TaskStatus(StrEnum):
     """Task status."""
 
     PENDING = "pending"
@@ -16,7 +17,7 @@ class TaskStatus(str, Enum):
     CANCELLED = "cancelled"
 
 
-class TaskPriority(str, Enum):
+class TaskPriority(StrEnum):
     """Task priority."""
 
     LOW = "low"
@@ -31,9 +32,9 @@ class Task(BaseModel):
     task_id: str
     name: str
     description: str = ""
-    payload: Dict[str, Any] = Field(default_factory=dict)
+    payload: dict[str, Any] = Field(default_factory=dict)
     status: TaskStatus = TaskStatus.PENDING
     priority: TaskPriority = TaskPriority.NORMAL
-    agent_id: Optional[str] = None
-    result: Optional[Any] = None
-    error: Optional[str] = None
+    agent_id: str | None = None
+    result: Any | None = None
+    error: str | None = None

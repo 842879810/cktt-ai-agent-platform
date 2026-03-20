@@ -1,6 +1,6 @@
 """Agent Coordinator - Coordinates multiple agents."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,15 +11,15 @@ class CoordinationResult(BaseModel):
     success: bool
     agent: str
     result: Any
-    error: Optional[str] = None
+    error: str | None = None
 
 
 class AgentCoordinator:
     """Coordinator for managing agent interactions."""
 
     def __init__(self):
-        self.agents: Dict[str, Any] = {}
-        self.execution_history: List[CoordinationResult] = []
+        self.agents: dict[str, Any] = {}
+        self.execution_history: list[CoordinationResult] = []
 
     def register(self, name: str, agent: Any) -> None:
         """Register an agent."""
@@ -30,7 +30,7 @@ class AgentCoordinator:
         if name in self.agents:
             del self.agents[name]
 
-    async def coordinate(self, task: Any, agent_name: Optional[str] = None) -> CoordinationResult:
+    async def coordinate(self, task: Any, agent_name: str | None = None) -> CoordinationResult:
         """Coordinate task execution."""
         if agent_name:
             # Execute with specific agent
@@ -70,7 +70,7 @@ class AgentCoordinator:
             first_agent_name = next(iter(self.agents))
             return await self.coordinate(task, first_agent_name)
 
-    def get_history(self) -> List[CoordinationResult]:
+    def get_history(self) -> list[CoordinationResult]:
         """Get execution history."""
         return self.execution_history.copy()
 

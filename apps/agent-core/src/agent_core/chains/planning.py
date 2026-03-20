@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from .base import BaseChain, ChainConfig
+from .base import BaseChain
 
 
 class PlanningChain(BaseChain):

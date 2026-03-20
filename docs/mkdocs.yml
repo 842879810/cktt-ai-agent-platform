@@ -4,6 +4,7 @@ site_author: CKTT Team
 
 theme:
   name: material
+  language: zh
 
 nav:
   - Home: index.md
@@ -14,10 +15,11 @@ nav:
   - Architecture:
       - Overview: architecture/overview.md
       - System Design: architecture/system-design.md
-  - API: api/
-  - Guides: guides/
-  - Examples: examples/
-  - Contributing: contributing/
+  - Database:
+      - Schema: ../scripts/database/schema.sql
+      - Setup: ../scripts/database/README.md
+  - Usage (中文):
+      - 使用说明书: ../USAGE.md
 
 plugins:
   - search

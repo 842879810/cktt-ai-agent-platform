@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api.v1 import agents, tasks, crews
+from .api.v1 import agents, crews, tasks
 
 app = FastAPI(
     title="CKTT AI Agent Platform",

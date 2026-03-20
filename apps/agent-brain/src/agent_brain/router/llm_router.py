@@ -1,6 +1,6 @@
 """LLM Router - Routes requests to appropriate LLM providers."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .base import BaseRouter, RouteConfig
 
@@ -8,7 +8,7 @@ from .base import BaseRouter, RouteConfig
 class LLMRouter(BaseRouter):
     """Router for selecting appropriate LLM provider."""
 
-    def __init__(self, config: RouteConfig, providers: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: RouteConfig, providers: dict[str, Any] | None = None):
         super().__init__(config)
         self.providers = providers or {}
 
@@ -24,10 +24,10 @@ class LLMRouter(BaseRouter):
         else:
             return {"provider": "local", "model": model}
 
-    def register_provider(self, name: str, config: Dict[str, Any]) -> None:
+    def register_provider(self, name: str, config: dict[str, Any]) -> None:
         """Register a new LLM provider."""
         self.providers[name] = config
 
-    def list_providers(self) -> List[str]:
+    def list_providers(self) -> list[str]:
         """List all registered providers."""
         return list(self.providers.keys())

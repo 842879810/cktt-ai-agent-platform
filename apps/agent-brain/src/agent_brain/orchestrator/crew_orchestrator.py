@@ -1,7 +1,7 @@
 """Crew Orchestrator - Multi-agent orchestration."""
 
 import asyncio
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -13,7 +13,7 @@ class AgentInfo(BaseModel):
 
     name: str
     role: str
-    capabilities: List[str]
+    capabilities: list[str]
 
 
 class CrewOrchestrator(BaseOrchestrator):
@@ -21,7 +21,7 @@ class CrewOrchestrator(BaseOrchestrator):
 
     def __init__(self, config: OrchestratorConfig):
         super().__init__(config)
-        self.agents: Dict[str, Any] = {}
+        self.agents: dict[str, Any] = {}
 
     def register_agent(self, name: str, agent: Any) -> None:
         """Register an agent with the orchestrator."""
@@ -58,6 +58,6 @@ class CrewOrchestrator(BaseOrchestrator):
         except Exception as e:
             return {"error": str(e)}
 
-    def list_agents(self) -> List[str]:
+    def list_agents(self) -> list[str]:
         """List all registered agents."""
         return list(self.agents.keys())

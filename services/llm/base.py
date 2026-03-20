@@ -1,7 +1,6 @@
 """LLM base classes."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -18,7 +17,7 @@ class LLMResponse(BaseModel):
 
     content: str
     model: str
-    usage: Dict[str, int] = {}
+    usage: dict[str, int] = {}
 
 
 class BaseLLM(ABC):
@@ -29,7 +28,7 @@ class BaseLLM(ABC):
         self.model = model
 
     @abstractmethod
-    async def chat(self, messages: List[Message], **kwargs) -> LLMResponse:
+    async def chat(self, messages: list[Message], **kwargs) -> LLMResponse:
         """Send a chat request."""
         pass
 

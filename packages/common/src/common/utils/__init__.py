@@ -2,7 +2,7 @@
 
 import hashlib
 import uuid
-from typing import Any, Dict
+from typing import Any
 
 
 def generate_id(prefix: str = "") -> str:
@@ -18,13 +18,13 @@ def hash_string(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
-def merge_dicts(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
+def merge_dicts(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
     """Merge two dictionaries."""
     result = base.copy()
     result.update(override)
     return result
 
 
-def safe_get(data: Dict[str, Any], key: str, default: Any = None) -> Any:
+def safe_get(data: dict[str, Any], key: str, default: Any = None) -> Any:
     """Safely get a value from a dictionary."""
     return data.get(key, default)

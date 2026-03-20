@@ -16,7 +16,7 @@
     response = await agent.run("你好")
 """
 
-from typing import Any, Optional
+from typing import Any
 
 from .base import AgentConfig, BaseAgent
 
@@ -44,7 +44,7 @@ class ConversationalAgent(BaseAgent):
     3. 获取响应结果
     """
 
-    def __init__(self, config: AgentConfig, system_prompt: Optional[str] = None):
+    def __init__(self, config: AgentConfig, system_prompt: str | None = None):
         """
         初始化对话型智能体
 

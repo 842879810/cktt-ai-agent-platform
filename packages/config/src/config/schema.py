@@ -1,6 +1,5 @@
 """Configuration schema."""
 
-from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field
 
 
@@ -20,7 +19,7 @@ class RedisConfig(BaseModel):
     host: str = "localhost"
     port: int = 6379
     db: int = 0
-    password: Optional[str] = None
+    password: str | None = None
 
 
 class LLMConfig(BaseModel):
@@ -29,7 +28,7 @@ class LLMConfig(BaseModel):
     provider: str = "openai"
     api_key: str = ""
     model: str = "gpt-4"
-    base_url: Optional[str] = None
+    base_url: str | None = None
 
 
 class AppConfig(BaseModel):

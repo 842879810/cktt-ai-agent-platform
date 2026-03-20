@@ -84,6 +84,17 @@ poetry run uvicorn apps.agent_api.src.agent_api.main:app --reload
 
 Visit http://localhost:8000 for API documentation.
 
+### Initialize Database
+
+```bash
+# Execute database schema
+psql -d agent_platform -f scripts/database/schema.sql
+```
+
+### Chinese Documentation
+
+For Chinese users, see [USAGE.md](./USAGE.md) for detailed usage instructions.
+
 ---
 
 ## Built-in Agents

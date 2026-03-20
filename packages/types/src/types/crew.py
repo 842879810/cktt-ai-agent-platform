@@ -1,11 +1,12 @@
 """Crew type definitions."""
 
-from typing import Any, Dict, List
+from enum import StrEnum
+from typing import Any
+
 from pydantic import BaseModel, Field
-from enum import Enum
 
 
-class CrewStatus(str, Enum):
+class CrewStatus(StrEnum):
     """Crew status."""
 
     CREATED = "created"
@@ -14,7 +15,7 @@ class CrewStatus(str, Enum):
     ERROR = "error"
 
 
-class CrewStrategy(str, Enum):
+class CrewStrategy(StrEnum):
     """Crew orchestration strategy."""
 
     SEQUENTIAL = "sequential"
@@ -28,16 +29,16 @@ class Crew(BaseModel):
     crew_id: str
     name: str
     description: str = ""
-    agent_ids: List[str] = []
+    agent_ids: list[str] = []
     status: CrewStatus = CrewStatus.CREATED
     strategy: CrewStrategy = CrewStrategy.PARALLEL
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
 
 class CrewResult(BaseModel):
     """Result from a crew execution."""
 
     crew_id: str
-    results: List[Dict[str, Any]]
+    results: list[dict[str, Any]]
     status: str
-    errors: List[str] = []
+    errors: list[str] = []

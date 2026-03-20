@@ -1,7 +1,7 @@
 """Skill base classes."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -12,7 +12,7 @@ class SkillConfig(BaseModel):
     name: str
     description: str
     version: str = "1.0.0"
-    parameters: Dict[str, Any] = Field(default_factory=dict)
+    parameters: dict[str, Any] = Field(default_factory=dict)
 
 
 class SkillResult(BaseModel):
@@ -20,8 +20,8 @@ class SkillResult(BaseModel):
 
     success: bool
     output: Any
-    error: Optional[str] = None
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    error: str | None = None
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
 
 class BaseSkill(ABC):

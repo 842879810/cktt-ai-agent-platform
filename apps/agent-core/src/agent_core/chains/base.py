@@ -1,7 +1,7 @@
 """Chain base classes."""
 
 from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -18,7 +18,7 @@ class BaseChain(ABC):
 
     def __init__(self, config: ChainConfig):
         self.config = config
-        self.steps: List[Any] = []
+        self.steps: list[Any] = []
 
     @abstractmethod
     async def run(self, input_data: Any) -> Any:

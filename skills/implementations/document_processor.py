@@ -1,8 +1,7 @@
 """Document Processor Skill."""
 
-from typing import Any, Dict
 
-from ..base import BaseSkill, SkillConfig, SkillResult
+from ..base import BaseSkill, SkillResult
 
 
 class DocumentProcessorSkill(BaseSkill):

@@ -1,7 +1,7 @@
 """Vector store base classes."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 
 class VectorStore(ABC):
@@ -11,12 +11,12 @@ class VectorStore(ABC):
         self.dimension = dimension
 
     @abstractmethod
-    async def add(self, id: str, vector: List[float], metadata: Dict[str, Any]) -> None:
+    async def add(self, id: str, vector: list[float], metadata: dict[str, Any]) -> None:
         """Add a vector to the store."""
         pass
 
     @abstractmethod
-    async def search(self, query_vector: List[float], top_k: int = 5) -> List[Tuple[str, float, Dict[str, Any]]]:
+    async def search(self, query_vector: list[float], top_k: int = 5) -> list[tuple[str, float, dict[str, Any]]]:
         """Search for similar vectors."""
         pass
 
@@ -26,6 +26,6 @@ class VectorStore(ABC):
         pass
 
     @abstractmethod
-    async def get(self, id: str) -> Tuple[List[float], Dict[str, Any]]:
+    async def get(self, id: str) -> tuple[list[float], dict[str, Any]]:
         """Get a vector by ID."""
         pass

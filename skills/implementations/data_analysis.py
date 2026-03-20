@@ -1,8 +1,8 @@
 """Data Analysis Skill."""
 
-from typing import Any, Dict, List
+from typing import Any
 
-from ..base import BaseSkill, SkillConfig, SkillResult
+from ..base import BaseSkill, SkillResult
 
 
 class DataAnalysisSkill(BaseSkill):

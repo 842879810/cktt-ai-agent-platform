@@ -1,11 +1,12 @@
 """Tool type definitions."""
 
-from typing import Any, Dict, List, Optional
+from enum import StrEnum
+from typing import Any
+
 from pydantic import BaseModel, Field
-from enum import Enum
 
 
-class ToolType(str, Enum):
+class ToolType(StrEnum):
     """Tool types."""
 
     FUNCTION = "function"
@@ -21,8 +22,8 @@ class Tool(BaseModel):
     name: str
     description: str
     type: ToolType = ToolType.FUNCTION
-    parameters: Dict[str, Any] = Field(default_factory=dict)
-    returns: Dict[str, Any] = Field(default_factory=dict)
+    parameters: dict[str, Any] = Field(default_factory=dict)
+    returns: dict[str, Any] = Field(default_factory=dict)
     is_async: bool = False
 
 
@@ -30,7 +31,7 @@ class ToolExecution(BaseModel):
     """Tool execution model."""
 
     tool_name: str
-    parameters: Dict[str, Any] = Field(default_factory=dict)
-    result: Optional[Any] = None
-    error: Optional[str] = None
+    parameters: dict[str, Any] = Field(default_factory=dict)
+    result: Any | None = None
+    error: str | None = None
     duration: float = 0.0

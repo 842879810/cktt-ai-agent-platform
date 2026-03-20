@@ -1,6 +1,6 @@
 """Task Router - Routes tasks to appropriate agents."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from .base import BaseRouter, RouteConfig
 
@@ -8,7 +8,7 @@ from .base import BaseRouter, RouteConfig
 class TaskRouter(BaseRouter):
     """Router for routing tasks to appropriate agents."""
 
-    def __init__(self, config: RouteConfig, routes: Optional[Dict[str, str]] = None):
+    def __init__(self, config: RouteConfig, routes: dict[str, str] | None = None):
         super().__init__(config)
         self.routes = routes or {
             "conversation": "conversational_agent",

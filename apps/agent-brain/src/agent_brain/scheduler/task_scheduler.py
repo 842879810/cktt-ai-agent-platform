@@ -1,6 +1,5 @@
 """Task Scheduler Implementation."""
 
-from typing import Any, List, Optional
 import asyncio
 
 from .base import BaseScheduler, SchedulerConfig, Task
@@ -40,20 +39,20 @@ class TaskScheduler(BaseScheduler):
             # Simulate task execution
             await asyncio.sleep(0.1)
             task.status = "completed"
-        except Exception as e:
+        except Exception:
             task.status = "failed"
         finally:
             if task.task_id in self._running_tasks:
                 del self._running_tasks[task.task_id]
 
-    def get_task(self, task_id: str) -> Optional[Task]:
+    def get_task(self, task_id: str) -> Task | None:
         """Get a task by ID."""
         for task in self.tasks:
             if task.task_id == task_id:
                 return task
         return None
 
-    def list_tasks(self, status: Optional[str] = None) -> List[Task]:
+    def list_tasks(self, status: str | None = None) -> list[Task]:
         """List tasks, optionally filtered by status."""
         if status:
             return [t for t in self.tasks if t.status == status]

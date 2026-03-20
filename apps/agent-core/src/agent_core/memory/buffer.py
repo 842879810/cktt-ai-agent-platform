@@ -1,6 +1,5 @@
 """Buffer memory for storing conversation history."""
 
-from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -18,9 +17,9 @@ class BufferMemory:
 
     def __init__(self, max_size: int = 100):
         self.max_size = max_size
-        self.messages: List[MemoryItem] = []
+        self.messages: list[MemoryItem] = []
 
-    def add(self, role: str, content: str, metadata: Optional[dict] = None) -> None:
+    def add(self, role: str, content: str, metadata: dict | None = None) -> None:
         """Add a message to memory."""
         item = MemoryItem(role=role, content=content, metadata=metadata or {})
         self.messages.append(item)
@@ -29,7 +28,7 @@ class BufferMemory:
         if len(self.messages) > self.max_size:
             self.messages = self.messages[-self.max_size:]
 
-    def get_messages(self) -> List[MemoryItem]:
+    def get_messages(self) -> list[MemoryItem]:
         """Get all messages."""
         return self.messages.copy()
 

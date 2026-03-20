@@ -1,6 +1,6 @@
 """Redis memory storage."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class RedisMemoryStore:
@@ -11,11 +11,11 @@ class RedisMemoryStore:
         self.port = port
         self.db = db
 
-    async def set(self, key: str, value: Any, ttl: Optional[int] = None) -> None:
+    async def set(self, key: str, value: Any, ttl: int | None = None) -> None:
         """Set a value in Redis."""
         pass
 
-    async def get(self, key: str) -> Optional[Any]:
+    async def get(self, key: str) -> Any | None:
         """Get a value from Redis."""
         return None
 
@@ -31,6 +31,6 @@ class RedisMemoryStore:
         """Push to a list in Redis."""
         pass
 
-    async def list_range(self, key: str, start: int = 0, end: int = -1) -> List[Any]:
+    async def list_range(self, key: str, start: int = 0, end: int = -1) -> list[Any]:
         """Get range from a list."""
         return []

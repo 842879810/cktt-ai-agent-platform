@@ -1,6 +1,5 @@
 """Crews API endpoints."""
 
-from typing import List
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -12,7 +11,7 @@ class CrewCreateRequest(BaseModel):
 
     name: str
     description: str = ""
-    agent_ids: List[str] = []
+    agent_ids: list[str] = []
 
 
 class CrewResponse(BaseModel):
@@ -21,7 +20,7 @@ class CrewResponse(BaseModel):
     crew_id: str
     name: str
     description: str
-    agent_ids: List[str]
+    agent_ids: list[str]
     status: str
 
 
@@ -36,7 +35,7 @@ class CrewRunResponse(BaseModel):
     """Crew run response."""
 
     crew_id: str
-    results: List[dict]
+    results: list[dict]
     status: str
 
 
@@ -52,7 +51,7 @@ async def create_crew(request: CrewCreateRequest):
     )
 
 
-@router.get("/", response_model=List[CrewResponse])
+@router.get("/", response_model=list[CrewResponse])
 async def list_crews():
     """List all crews."""
     return []

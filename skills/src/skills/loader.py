@@ -2,7 +2,6 @@
 
 import importlib
 import inspect
-from typing import Any, Dict, List, Type
 
 from .base import BaseSkill, SkillConfig
 
@@ -11,9 +10,9 @@ class SkillLoader:
     """Loader for dynamically loading skills."""
 
     def __init__(self):
-        self._loaded_skills: Dict[str, Type[BaseSkill]] = {}
+        self._loaded_skills: dict[str, type[BaseSkill]] = {}
 
-    def load_from_module(self, module_name: str) -> List[Type[BaseSkill]]:
+    def load_from_module(self, module_name: str) -> list[type[BaseSkill]]:
         """Load skills from a module."""
         try:
             module = importlib.import_module(module_name)
@@ -28,12 +27,12 @@ class SkillLoader:
         except ImportError as e:
             raise ImportError(f"Failed to load module {module_name}: {e}")
 
-    def load_from_path(self, path: str) -> List[Type[BaseSkill]]:
+    def load_from_path(self, path: str) -> list[type[BaseSkill]]:
         """Load skills from a file path."""
         # Import the module from the path
         module_name = path.replace("/", ".").replace("\\", ".").replace(".py", "")
         return self.load_from_module(module_name)
 
-    def create_skill(self, skill_class: Type[BaseSkill], config: SkillConfig) -> BaseSkill:
+    def create_skill(self, skill_class: type[BaseSkill], config: SkillConfig) -> BaseSkill:
         """Create a skill instance from a class."""
         return skill_class(config=config)

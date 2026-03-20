@@ -1,8 +1,7 @@
 """Web Search Skill."""
 
-from typing import Any, Dict, List
 
-from ..base import BaseSkill, SkillConfig, SkillResult
+from ..base import BaseSkill, SkillResult
 
 
 class WebSearchSkill(BaseSkill):

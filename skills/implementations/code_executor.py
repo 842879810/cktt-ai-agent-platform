@@ -1,9 +1,7 @@
 """Code Executor Skill."""
 
-import asyncio
-from typing import Any, Dict
 
-from ..base import BaseSkill, SkillConfig, SkillResult
+from ..base import BaseSkill, SkillResult
 
 
 class CodeExecutorSkill(BaseSkill):

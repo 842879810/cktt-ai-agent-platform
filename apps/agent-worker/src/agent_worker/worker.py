@@ -1,7 +1,8 @@
 """Worker implementation using Celery."""
 
+from typing import Any
+
 from celery import Celery
-from typing import Any, Dict
 
 # Celery app configuration
 app = Celery(
@@ -20,7 +21,7 @@ app.conf.update(
 
 
 @app.task(name="agent_worker.process_task")
-def process_task(task_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+def process_task(task_id: str, payload: dict[str, Any]) -> dict[str, Any]:
     """Process a task."""
     return {
         "task_id": task_id,
@@ -30,7 +31,7 @@ def process_task(task_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
 
 
 @app.task(name="agent_worker.run_agent")
-def run_agent(agent_id: str, input_data: Any) -> Dict[str, Any]:
+def run_agent(agent_id: str, input_data: Any) -> dict[str, Any]:
     """Run an agent."""
     return {
         "agent_id": agent_id,
@@ -40,7 +41,7 @@ def run_agent(agent_id: str, input_data: Any) -> Dict[str, Any]:
 
 
 @app.task(name="agent_worker.orchestrate_crew")
-def orchestrate_crew(crew_id: str, input_data: Any) -> Dict[str, Any]:
+def orchestrate_crew(crew_id: str, input_data: Any) -> dict[str, Any]:
     """Orchestrate a crew."""
     return {
         "crew_id": crew_id,

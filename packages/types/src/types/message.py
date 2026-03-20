@@ -1,12 +1,13 @@
 """Message type definitions."""
 
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
+from typing import Any
+
+from pydantic import BaseModel, Field
 
 
-class MessageRole(str, Enum):
+class MessageRole(StrEnum):
     """Message roles."""
 
     USER = "user"
@@ -20,7 +21,7 @@ class Message(BaseModel):
 
     role: MessageRole
     content: str
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)
     timestamp: datetime = Field(default_factory=datetime.now)
 
 
@@ -28,13 +29,13 @@ class Conversation(BaseModel):
     """Conversation model."""
 
     conversation_id: str
-    messages: List[Message] = Field(default_factory=list)
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    messages: list[Message] = Field(default_factory=list)
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
-    def add_message(self, role: MessageRole, content: str, metadata: Optional[Dict[str, Any]] = None) -> None:
+    def add_message(self, role: MessageRole, content: str, metadata: dict[str, Any] | None = None) -> None:
         """Add a message to the conversation."""
         self.messages.append(Message(role=role, content=content, metadata=metadata or {}))
 
-    def get_messages(self) -> List[Message]:
+    def get_messages(self) -> list[Message]:
         """Get all messages."""
         return self.messages.copy()

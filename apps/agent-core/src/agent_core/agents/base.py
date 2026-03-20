@@ -11,7 +11,7 @@
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -52,10 +52,10 @@ class AgentState(BaseModel):
     """
 
     iteration: int = 0  # 当前迭代次数
-    memory: List[str] = Field(default_factory=list)  # 记忆列表
-    context: Dict[str, Any] = Field(default_factory=dict)  # 上下文数据
+    memory: list[str] = Field(default_factory=list)  # 记忆列表
+    context: dict[str, Any] = Field(default_factory=dict)  # 上下文数据
     is_complete: bool = False  # 是否完成执行
-    error: Optional[str] = None  # 错误信息
+    error: str | None = None  # 错误信息
 
 
 class BaseAgent(ABC):

@@ -1,7 +1,7 @@
 """Orchestrator module."""
 
 from .base import BaseOrchestrator, OrchestratorConfig
-from .crew_orchestrator import CrewOrchestrator, AgentInfo
+from .crew_orchestrator import AgentInfo, CrewOrchestrator
 
 __all__ = [
     "BaseOrchestrator",

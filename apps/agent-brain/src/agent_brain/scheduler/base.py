@@ -1,7 +1,6 @@
 """Scheduler base classes."""
 
 from abc import ABC, abstractmethod
-from typing import Any, List
 
 from pydantic import BaseModel
 
@@ -28,7 +27,7 @@ class BaseScheduler(ABC):
 
     def __init__(self, config: SchedulerConfig):
         self.config = config
-        self.tasks: List[Task] = []
+        self.tasks: list[Task] = []
 
     @abstractmethod
     async def schedule(self, task: Task) -> str:

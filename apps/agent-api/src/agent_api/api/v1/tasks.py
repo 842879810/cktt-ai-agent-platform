@@ -1,7 +1,6 @@
 """Tasks API endpoints."""
 
-from typing import List, Optional
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel
 
 router = APIRouter()
@@ -38,8 +37,8 @@ async def create_task(request: TaskCreateRequest):
     )
 
 
-@router.get("/", response_model=List[TaskResponse])
-async def list_tasks(status: Optional[str] = None):
+@router.get("/", response_model=list[TaskResponse])
+async def list_tasks(status: str | None = None):
     """List all tasks."""
     return []
 

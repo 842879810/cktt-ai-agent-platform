@@ -1,14 +1,13 @@
 """Metrics utilities."""
 
-from typing import Dict, Any
-import time
+from typing import Any
 
 
 class MetricsCollector:
     """Simple metrics collector."""
 
     def __init__(self):
-        self._metrics: Dict[str, Any] = {}
+        self._metrics: dict[str, Any] = {}
 
     def increment(self, name: str, value: int = 1) -> None:
         """Increment a counter."""
@@ -26,7 +25,7 @@ class MetricsCollector:
         """Get a metric value."""
         return self._metrics.get(name)
 
-    def all(self) -> Dict[str, Any]:
+    def all(self) -> dict[str, Any]:
         """Get all metrics."""
         return self._metrics.copy()
 

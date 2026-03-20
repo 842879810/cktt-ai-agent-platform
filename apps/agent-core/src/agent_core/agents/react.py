@@ -21,9 +21,9 @@ ReAct模式的核心思想：
     result = await agent.run("帮我查询今天的天气")
 """
 
-from typing import Any, Dict, Optional
+from typing import Any
 
-from .base import AgentConfig, AgentState, BaseAgent
+from .base import AgentConfig, BaseAgent
 
 
 class ReactAgent(BaseAgent):
@@ -51,7 +51,7 @@ class ReactAgent(BaseAgent):
     3. 获取执行结果
     """
 
-    def __init__(self, config: AgentConfig, tools: Optional[list] = None):
+    def __init__(self, config: AgentConfig, tools: list | None = None):
         """
         初始化ReAct智能体
 

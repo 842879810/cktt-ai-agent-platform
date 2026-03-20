@@ -1,6 +1,6 @@
 """Planning system."""
 
-from typing import Any, List
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,7 +11,7 @@ class PlanStep(BaseModel):
     step_id: str
     description: str
     action: str
-    depends_on: List[str] = []
+    depends_on: list[str] = []
 
 
 class Plan(BaseModel):
@@ -19,7 +19,7 @@ class Plan(BaseModel):
 
     plan_id: str
     goal: str
-    steps: List[PlanStep]
+    steps: list[PlanStep]
     status: str = "pending"
 
 

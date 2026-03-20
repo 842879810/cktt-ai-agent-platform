@@ -1,6 +1,5 @@
 """Skill registry for managing available skills."""
 
-from typing import Dict, List, Optional
 
 from .base import BaseSkill
 
@@ -9,7 +8,7 @@ class SkillRegistry:
     """Registry for managing skills."""
 
     def __init__(self):
-        self._skills: Dict[str, BaseSkill] = {}
+        self._skills: dict[str, BaseSkill] = {}
 
     def register(self, skill: BaseSkill) -> None:
         """Register a skill."""
@@ -20,11 +19,11 @@ class SkillRegistry:
         if name in self._skills:
             del self._skills[name]
 
-    def get(self, name: str) -> Optional[BaseSkill]:
+    def get(self, name: str) -> BaseSkill | None:
         """Get a skill by name."""
         return self._skills.get(name)
 
-    def list_skills(self) -> List[str]:
+    def list_skills(self) -> list[str]:
         """List all registered skill names."""
         return list(self._skills.keys())
 

@@ -1,6 +1,6 @@
 """PostgreSQL memory storage."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class PostgresMemoryStore:
@@ -21,14 +21,14 @@ class PostgresMemoryStore:
         """Disconnect from PostgreSQL."""
         pass
 
-    async def execute(self, query: str, params: Optional[tuple] = None) -> Any:
+    async def execute(self, query: str, params: tuple | None = None) -> Any:
         """Execute a query."""
         pass
 
-    async def fetchone(self, query: str, params: Optional[tuple] = None) -> Optional[Dict[str, Any]]:
+    async def fetchone(self, query: str, params: tuple | None = None) -> dict[str, Any] | None:
         """Fetch one row."""
         return None
 
-    async def fetchall(self, query: str, params: Optional[tuple] = None) -> List[Dict[str, Any]]:
+    async def fetchall(self, query: str, params: tuple | None = None) -> list[dict[str, Any]]:
         """Fetch all rows."""
         return []
